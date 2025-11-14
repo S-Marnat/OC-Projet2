@@ -21,6 +21,9 @@ namespace P2FixAnAppDotNetCode.Models
         [Required(ErrorMessage = "ErrorMissingCity")]
         public string City { get; set; }
 
+        //Début MODIFICATION
+        [Required(ErrorMessage = "ErrorMissingZip")]
+        //Fin MODIFICATION
         public string Zip { get; set; }
 
         [Required(ErrorMessage = "ErrorMissingCountry")]

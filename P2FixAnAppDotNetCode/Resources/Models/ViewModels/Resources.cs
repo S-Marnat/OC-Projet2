@@ -31,6 +31,17 @@ namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
                 return resourceManager.GetString("ErrorMissingCity", resourceCulture);
             }
         }
+
+        // Début MODIFICATION
+        public static string ErrorMissingZip
+        {
+            get
+            {
+                return resourceManager.GetString("ErrorMissingZip", resourceCulture);
+            }
+        }
+        // Fin MODIFICATION
+
         public static string ErrorMissingCountry
         {
             get

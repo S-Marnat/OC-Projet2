@@ -123,6 +123,11 @@
   <data name="ErrorMissingCity" xml:space="preserve">
     <value>Veuillez renseigner le nom d'une ville</value>
   </data>
+<!-- Début MODIFICATION -->
+  <data name="ErrorMissingZip" xml:space="preserve">
+    <value>Veuillez renseigner un code postal</value>
+  </data>
+<!-- Fin MODIFICATION -->
   <data name="ErrorMissingCountry" xml:space="preserve">
     <value>Veuillez renseigner le nom d'un pays</value>
   </data>
