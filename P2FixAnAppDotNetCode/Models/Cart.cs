@@ -114,6 +114,18 @@ namespace P2FixAnAppDotNetCode.Models
         public Product FindProductInCartLines(int productId)
         {
             // TODO implement the method
+            // Début MODIFICATION
+            var cartLines = GetCartLineList();
+
+            foreach (var cartLine in cartLines)
+            {
+                if (cartLine.Product.Id == productId)
+                {
+                    return cartLine.Product;
+                }
+            }
+            // Fin MODIFICATION
+
             return null;
         }
 
