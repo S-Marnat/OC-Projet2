@@ -53,6 +53,14 @@ namespace P2FixAnAppDotNetCode.Models.Services
         {
             // TODO implement the method
             // update product inventory by using _productRepository.UpdateProductStocks() method.
+            // Début MODIFICATION
+            var lines = cart.Lines;
+
+            foreach (var line in lines)
+            {
+                _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
+            }
+            // Fin MODIFICATION
         }
     }
 }
