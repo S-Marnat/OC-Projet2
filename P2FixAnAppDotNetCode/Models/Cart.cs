@@ -89,6 +89,22 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
+            // Début MODIFICATION
+            var cartLines = GetCartLineList();
+            double totalPrice = 0.0;
+            int totalQuantity = 0;
+
+            foreach (var cartLine in cartLines)
+            {
+                totalPrice += cartLine.Product.Price * cartLine.Quantity;
+                totalQuantity += cartLine.Quantity;
+            }
+
+            if (totalQuantity > 0)
+            {
+                return totalPrice / totalQuantity;
+            }
+            // Fin MODIFICATION
             return 0.0;
         }
 
