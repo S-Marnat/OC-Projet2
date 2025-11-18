@@ -32,6 +32,17 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public Product GetProductById(int id)
         {
             // TODO implement the method
+            // Début MODIFICATION
+            var products = _productRepository.GetAllProducts();
+
+            foreach (var product in products)
+            {
+                if (product.Id == id)
+                {
+                    return product;
+                }
+            }
+            // Fin MODIFICATION
             return null;
         }
 

@@ -11,7 +11,11 @@ namespace P2FixAnAppDotNetCode.Models
         /// <summary>
         /// Read-only property for display only
         /// </summary>
-        public IEnumerable<CartLine> Lines => GetCartLineList();
+        // Début MODIFICATION
+        private List<CartLine> LineCollection = new List<CartLine>();
+        public IEnumerable<CartLine> Lines => LineCollection;
+        // Fin MODIFICATION
+        // public IEnumerable<CartLine> Lines => GetCartLineList();
 
         /// <summary>
         /// Return the actual cartline list
@@ -19,7 +23,10 @@ namespace P2FixAnAppDotNetCode.Models
         /// <returns></returns>
         private List<CartLine> GetCartLineList()
         {
-            return new List<CartLine>();
+            // Début MODIFICATION
+            return LineCollection;
+            // Fin MODIFICATION
+            // return new List<CartLine>();
         }
 
         /// <summary>
@@ -28,6 +35,26 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+            // Début MODIFICATION
+           var cartLines = GetCartLineList();
+
+            foreach (var cartLine in cartLines)
+            {
+                if (cartLine.Product.Id == product.Id)
+                {
+                    cartLine.Quantity += quantity;
+                    return;
+                }
+            }
+
+            cartLines.Add(new CartLine
+            {
+                Product = product,
+                Quantity = quantity
+            });
+
+            return;
+            // Fin MODIFICATION
         }
 
         /// <summary>
