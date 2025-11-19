@@ -1,8 +1,13 @@
-﻿namespace P2FixAnAppDotNetCode.Models.Repositories
+﻿using System.Collections.Generic;
+
+namespace P2FixAnAppDotNetCode.Models.Repositories
 {
     public interface IProductRepository
     {
-        Product[] GetAllProducts();
+        // Début MODIFICATION
+        List<Product> GetAllProducts();
+        // Fin MODIFICATION
+        // Product[] GetAllProducts();
 
         void UpdateProductStocks(int productId, int quantityToRemove);
     }
