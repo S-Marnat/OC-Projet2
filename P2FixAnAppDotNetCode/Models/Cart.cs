@@ -42,7 +42,11 @@ namespace P2FixAnAppDotNetCode.Models
             {
                 if (cartLine.Product.Id == product.Id)
                 {
-                    cartLine.Quantity += quantity;
+                    if (cartLine.Product.Stock >= cartLine.Quantity + quantity)
+                    {
+                        cartLine.Quantity += quantity;
+                        return;
+                    }
                     return;
                 }
             }
