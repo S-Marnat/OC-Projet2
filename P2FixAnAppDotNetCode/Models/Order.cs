@@ -12,21 +12,49 @@ namespace P2FixAnAppDotNetCode.Models
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
 
-        [Required(ErrorMessage = "ErrorMissingName")]
+        //Début MODIFICATION
+        [Required(
+            ErrorMessageResourceType = typeof(Resources.Models.ViewModels.Order),
+            ErrorMessageResourceName = "ErrorMissingName"
+        )]
+        //Fin MODIFICATION
+        // [Required(ErrorMessage = "ErrorMissingName")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "ErrorMissingAddress")]
+        //Début MODIFICATION
+        [Required(
+            ErrorMessageResourceType = typeof(Resources.Models.ViewModels.Order),
+            ErrorMessageResourceName = "ErrorMissingAddress"
+        )]
+        //Fin MODIFICATION
+        //[Required(ErrorMessage = "ErrorMissingAddress")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage = "ErrorMissingCity")]
+        //Début MODIFICATION
+        [Required(
+            ErrorMessageResourceType = typeof(Resources.Models.ViewModels.Order),
+            ErrorMessageResourceName = "ErrorMissingCity"
+        )]
+        //Fin MODIFICATION
+        //[Required(ErrorMessage = "ErrorMissingCity")]
         public string City { get; set; }
 
         //Début MODIFICATION
-        [Required(ErrorMessage = "ErrorMissingZip")]
+        [Required(
+            ErrorMessageResourceType = typeof(Resources.Models.ViewModels.Order),
+            ErrorMessageResourceName = "ErrorMissingZip"
+        )]
+        //[Required(ErrorMessage = "ErrorMissingZip")]
         //Fin MODIFICATION
         public string Zip { get; set; }
 
-        [Required(ErrorMessage = "ErrorMissingCountry")]
+        //Début MODIFICATION
+        [Required(
+            ErrorMessageResourceType = typeof(Resources.Models.ViewModels.Order),
+            ErrorMessageResourceName = "ErrorMissingCountry"
+        )]
+        //Fin MODIFICATION
+        //[Required(ErrorMessage = "ErrorMissingCountry")]
         public string Country { get; set; }
 
         [BindNever]
