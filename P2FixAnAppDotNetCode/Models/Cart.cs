@@ -36,28 +36,49 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // TODO implement the method
             // Début MODIFICATION
-           var cartLines = GetCartLineList();
+            var cartLines = GetCartLineList();
 
+            if (product.Stock == 0)
+            {
+                return;
+            }
+
+            // Vérification si le produit existe déjà dans le panier
             foreach (var cartLine in cartLines)
             {
                 if (cartLine.Product.Id == product.Id)
                 {
-                    if (cartLine.Product.Stock >= cartLine.Quantity + quantity)
+                    int newQuantity = cartLine.Quantity + quantity;
+
+                    if (product.Stock < newQuantity)
                     {
-                        cartLine.Quantity += quantity;
-                        return;
+                        cartLine.Quantity = product.Stock;
+                    }
+                    else
+                    {
+                        cartLine.Quantity = newQuantity;
                     }
                     return;
                 }
             }
 
+            // Le produit n'existe pas dans le panier, on vérifie la quantité à ajouter avant de l'ajouter
+            int quantityToAdd;
+
+            if (product.Stock < quantity)
+            {
+                quantityToAdd = product.Stock;
+            }
+            else
+            {
+                quantityToAdd = quantity;
+            }
+
             cartLines.Add(new CartLine
             {
                 Product = product,
-                Quantity = quantity
+                Quantity = quantityToAdd
             });
-
-            return;
             // Fin MODIFICATION
         }
 

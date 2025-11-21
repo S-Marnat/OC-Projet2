@@ -16,8 +16,13 @@ namespace P2FixAnAppDotNetCode.Tests
         public void AddItemInCart()
         {
             Cart cart = new Cart();
-            Product product1 = new Product(1, 0, 20, "name", "description");
-            Product product2 = new Product(1, 0, 20, "name", "description");
+            // Début MODIFICATION
+            Product product1 = new Product(1, 10, 20, "name", "description");
+            Product product2 = new Product(1, 10, 20, "name", "description");
+            // Sans stock, les produits ne peuvent pas être ajoutés au panier puisque AddItem vérifie la disponibilité du stock
+            // Fin MODIFICATION
+            // Product product1 = new Product(1, 0, 20, "name", "description");
+            // Product product2 = new Product(1, 0, 20, "name", "description");
 
             cart.AddItem(product1, 1);
             cart.AddItem(product2, 1);
@@ -26,6 +31,48 @@ namespace P2FixAnAppDotNetCode.Tests
             Assert.Single(cart.Lines);
             Assert.Equal(2, cart.Lines.First().Quantity);
         }
+
+        // Début MODIFICATION
+        [Fact]
+        public void AddItemInCart_Add2DifferentsItems_LinesCount2Quantity1()
+        {
+            Cart cart = new Cart();
+            Product product1 = new Product(1, 10, 20, "name", "description");
+            Product product2 = new Product(2, 10, 20, "name", "description");
+
+            cart.AddItem(product1, 1);
+            cart.AddItem(product2, 1);
+
+            Assert.NotEmpty(cart.Lines);
+            Assert.Equal(2, cart.Lines.Count());
+            foreach (var line in cart.Lines)
+            {
+                Assert.Equal(1, line.Quantity);
+            }
+        }
+
+        [Fact]
+        public void AddItemInCart_NoStock_NotAdd()
+        {
+            Cart cart = new Cart();
+            Product product1 = new Product(1, 0, 20, "name", "description");
+
+            cart.AddItem(product1, 1);
+
+            Assert.Empty(cart.Lines);
+        }
+
+        [Fact]
+        public void AddItemInCart_NoEnoughStock_MaximumAdd()
+        {
+            Cart cart = new Cart();
+            Product product1 = new Product(1, 2, 20, "name", "description");
+
+            cart.AddItem(product1, 3);
+
+            Assert.Equal(2, cart.Lines.First().Quantity);
+        }
+        // Fin MODIFICATION
 
         [Fact]
         public void GetAverageValue()
@@ -66,7 +113,11 @@ namespace P2FixAnAppDotNetCode.Tests
         public void FindProductInCartLines()
         {
             Cart cart = new Cart();
-            Product product = new Product(999, 0, 20, "name", "description");
+            // Début MODIFICATION
+            Product product = new Product(999, 2, 20, "name", "description");
+            // Sans stock, les produits ne peuvent pas être ajoutés au panier puisque AddItem vérifie la disponibilité du stock
+            // Fin MODIFICATION
+            // Product product = new Product(999, 0, 20, "name", "description");
 
             cart.AddItem(product, 1);
             Product result = cart.FindProductInCartLines(999);

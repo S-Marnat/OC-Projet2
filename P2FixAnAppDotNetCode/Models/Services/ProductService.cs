@@ -66,7 +66,15 @@ namespace P2FixAnAppDotNetCode.Models.Services
 
             foreach (var line in lines)
             {
-                _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
+                Product product = GetProductById(line.Product.Id);
+                if (product != null)
+                {
+                    product.Stock -= line.Quantity;
+                    if (product.Stock <= 0)
+                    {
+                        _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
+                    }
+                }
             }
             // Fin MODIFICATION
         }

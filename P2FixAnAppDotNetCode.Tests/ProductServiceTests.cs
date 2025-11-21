@@ -23,7 +23,10 @@ namespace P2FixAnAppDotNetCode.Tests
             var products = productService.GetAllProducts();
 
             //Assert.IsType<List<Product>>(products);
-            Assert.IsType<Product[]>(products);
+            // Début MODIFICATION
+            Assert.IsType<List<Product>>(products);
+            // Fin MODIFICATION
+            // Assert.IsType<Product[]>(products);
 
         }
 

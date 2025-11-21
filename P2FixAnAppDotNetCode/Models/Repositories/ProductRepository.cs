@@ -12,8 +12,16 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
 
         public ProductRepository()
         {
-            _products = new List<Product>();
-            GenerateProductData();
+            // Début MODIFICATION
+            // Si _products existe déjà, ne pas le recréer pout ne pas perdre les modifications de stock
+            if (_products == null)
+            {
+                _products = new List<Product>();
+                GenerateProductData();
+            }
+            // Fin MODIFICATION
+            // _products = new List<Product>();
+            // GenerateProductData();
         }
 
         /// <summary>
