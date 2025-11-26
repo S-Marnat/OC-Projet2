@@ -12,8 +12,8 @@ namespace P2FixAnAppDotNetCode.Models
         /// Read-only property for display only
         /// </summary>
         // Début MODIFICATION
-        private List<CartLine> LineCollection = new List<CartLine>();
-        public IEnumerable<CartLine> Lines => LineCollection;
+        private List<CartLine> _lineCollection = new List<CartLine>();
+        public IEnumerable<CartLine> Lines => _lineCollection;
         // Fin MODIFICATION
         // public IEnumerable<CartLine> Lines => GetCartLineList();
 
@@ -24,7 +24,7 @@ namespace P2FixAnAppDotNetCode.Models
         private List<CartLine> GetCartLineList()
         {
             // Début MODIFICATION
-            return LineCollection;
+            return _lineCollection;
             // Fin MODIFICATION
             // return new List<CartLine>();
         }
@@ -36,30 +36,27 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // TODO implement the method
             // Début MODIFICATION
-            var cartLines = GetCartLineList();
-
             if (product.Stock == 0)
             {
                 return;
             }
 
             // Vérification si le produit existe déjà dans le panier
-            foreach (var cartLine in cartLines)
-            {
-                if (cartLine.Product.Id == product.Id)
-                {
-                    int newQuantity = cartLine.Quantity + quantity;
+            var cartLine = FindProductInCartLines(product.Id);
 
-                    if (product.Stock < newQuantity)
-                    {
-                        cartLine.Quantity = product.Stock;
-                    }
-                    else
-                    {
-                        cartLine.Quantity = newQuantity;
-                    }
-                    return;
+            if (cartLine != null)
+            {
+                int newQuantity = cartLine.Quantity + quantity;
+
+                if (product.Stock < newQuantity)
+                {
+                    cartLine.Quantity = product.Stock;
                 }
+                else
+                {
+                    cartLine.Quantity = newQuantity;
+                }
+                return;
             }
 
             // Le produit n'existe pas dans le panier, on vérifie la quantité à ajouter avant de l'ajouter
@@ -74,7 +71,7 @@ namespace P2FixAnAppDotNetCode.Models
                 quantityToAdd = quantity;
             }
 
-            cartLines.Add(new CartLine
+            _lineCollection.Add(new CartLine
             {
                 Product = product,
                 Quantity = quantityToAdd
@@ -116,12 +113,11 @@ namespace P2FixAnAppDotNetCode.Models
             // TODO implement the method
             // Début MODIFICATION
             var cartLines = GetCartLineList();
-            double totalPrice = 0.0;
+            double totalPrice = GetTotalValue();
             int totalQuantity = 0;
 
             foreach (var cartLine in cartLines)
             {
-                totalPrice += cartLine.Product.Price * cartLine.Quantity;
                 totalQuantity += cartLine.Quantity;
             }
 
@@ -136,7 +132,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// <summary>
         /// Looks after a given product in the cart and returns if it finds it
         /// </summary>
-        public Product FindProductInCartLines(int productId)
+        public CartLine FindProductInCartLines(int productId)
         {
             // TODO implement the method
             // Début MODIFICATION
@@ -146,7 +142,7 @@ namespace P2FixAnAppDotNetCode.Models
             {
                 if (cartLine.Product.Id == productId)
                 {
-                    return cartLine.Product;
+                    return cartLine;
                 }
             }
             // Fin MODIFICATION
