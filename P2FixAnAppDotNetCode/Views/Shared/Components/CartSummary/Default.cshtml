@@ -7,7 +7,6 @@
     {
         <small class="navbar-text">
             <b>@Localizer["YourCart"]:</b>
-            @* Début MODIFICATION *@
             @{
                 int totalItems = Model.Lines.Sum(x => x.Quantity);
                 var label = Localizer["Item"];
@@ -19,8 +18,6 @@
             }
             @* Afficher le nombre total d'articles avec le libellé approprié *@
             @totalItems @label
-            @* @Model.Lines.Sum(x => x.Quantity) item(s) *@
-            @* Fin MODIFICATION *@
             @Model.GetTotalValue().ToString("c")
         </small>
     }

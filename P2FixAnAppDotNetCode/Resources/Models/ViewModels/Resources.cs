@@ -32,7 +32,6 @@ namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
             }
         }
 
-        // Début MODIFICATION
         public static string ErrorMissingZip
         {
             get
@@ -40,7 +39,6 @@ namespace P2FixAnAppDotNetCode.Resources.Models.ViewModels
                 return resourceManager.GetString("ErrorMissingZip", resourceCulture);
             }
         }
-        // Fin MODIFICATION
 
         public static string ErrorMissingCountry
         {

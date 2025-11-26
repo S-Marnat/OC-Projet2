@@ -123,11 +123,9 @@
   <data name="ErrorMissingCity" xml:space="preserve">
     <value>Introduzca el nombre de una ciudad</value>
   </data>
-<!-- Début MODIFICATION -->
   <data name="ErrorMissingZip" xml:space="preserve">
     <value>Introduzca un código postal</value>
   </data>
-<!-- Fin MODIFICATION -->
   <data name="ErrorMissingCountry" xml:space="preserve">
     <value>Introduzca el nombre de un país</value>
   </data>

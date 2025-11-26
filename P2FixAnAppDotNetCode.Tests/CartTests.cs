@@ -16,13 +16,8 @@ namespace P2FixAnAppDotNetCode.Tests
         public void AddItemInCart()
         {
             Cart cart = new Cart();
-            // Début MODIFICATION
             Product product1 = new Product(1, 10, 20, "name", "description");
             Product product2 = new Product(1, 10, 20, "name", "description");
-            // Sans stock, les produits ne peuvent pas être ajoutés au panier puisque AddItem vérifie la disponibilité du stock
-            // Fin MODIFICATION
-            // Product product1 = new Product(1, 0, 20, "name", "description");
-            // Product product2 = new Product(1, 0, 20, "name", "description");
 
             cart.AddItem(product1, 1);
             cart.AddItem(product2, 1);
@@ -32,7 +27,6 @@ namespace P2FixAnAppDotNetCode.Tests
             Assert.Equal(2, cart.Lines.First().Quantity);
         }
 
-        // Début MODIFICATION
         [Fact]
         public void AddItemInCart_Add2DifferentsItems_LinesCount2Quantity1()
         {
@@ -72,7 +66,6 @@ namespace P2FixAnAppDotNetCode.Tests
 
             Assert.Equal(2, cart.Lines.First().Quantity);
         }
-        // Fin MODIFICATION
 
         [Fact]
         public void GetAverageValue()
@@ -113,17 +106,10 @@ namespace P2FixAnAppDotNetCode.Tests
         public void FindProductInCartLines()
         {
             Cart cart = new Cart();
-            // Début MODIFICATION
             Product product = new Product(999, 2, 20, "name", "description");
-            // Sans stock, les produits ne peuvent pas être ajoutés au panier puisque AddItem vérifie la disponibilité du stock
-            // Fin MODIFICATION
-            // Product product = new Product(999, 0, 20, "name", "description");
 
             cart.AddItem(product, 1);
-            // Début MODIFICATION
             CartLine result = cart.FindProductInCartLines(999);
-            // Fin MODIFICATION
-            // Product result = cart.FindProductInCartLines(999);
 
             Assert.NotNull(result);
         }

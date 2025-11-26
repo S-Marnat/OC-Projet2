@@ -12,16 +12,11 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
 
         public ProductRepository()
         {
-            // Début MODIFICATION
-            // Si _products existe déjà, ne pas le recréer pout ne pas perdre les modifications de stock
             if (_products == null)
             {
                 _products = new List<Product>();
                 GenerateProductData();
             }
-            // Fin MODIFICATION
-            // _products = new List<Product>();
-            // GenerateProductData();
         }
 
         /// <summary>
@@ -45,13 +40,6 @@ namespace P2FixAnAppDotNetCode.Models.Repositories
             List<Product> list = _products.Where(p => p.Stock > 0).OrderBy(p => p.Name).ToList();
             return list;
         }
-        // Fin MODIFICATION
-
-        //public Product[] GetAllProducts()
-        //{
-        //    List<Product> list = _products.Where(p => p.Stock > 0).OrderBy(p => p.Name).ToList();
-        //    return list.ToArray();
-        //}
 
         /// <summary>
         /// Update the stock of a product in the inventory by its id
