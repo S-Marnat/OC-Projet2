@@ -14,7 +14,7 @@ namespace P2FixAnAppDotNetCode.Tests
     {
 
         [Fact]
-        public void Product()
+        public void GetAllProducts_WhenCalled_ReturnsListOfProduct()
         {
             IProductRepository productRepository = new ProductRepository();
             IOrderRepository orderRepository = new OrderRepository();
@@ -26,7 +26,7 @@ namespace P2FixAnAppDotNetCode.Tests
         }
 
         [Fact]
-        public void UpdateProductQuantities()
+        public void UpdateProductQuantities_WhenCartHasItems_StockDecrementedCorrectly()
         {
             Cart cart = new Cart();
             IProductRepository productRepository = new ProductRepository();
@@ -61,7 +61,7 @@ namespace P2FixAnAppDotNetCode.Tests
         }
 
         [Fact]
-        public void GetProductById()
+        public void GetProductById_GetProductById3_ReturnsNameAndPrice()
         {
             IProductRepository productRepository = new ProductRepository();
             IOrderRepository orderRepository = new OrderRepository();

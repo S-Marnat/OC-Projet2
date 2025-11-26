@@ -13,7 +13,7 @@ namespace P2FixAnAppDotNetCode.Tests
     public class CartTests
     {
         [Fact]
-        public void AddItemInCart()
+        public void AddItemInCart_Add2ItemID1_LinesCount1Quantity2()
         {
             Cart cart = new Cart();
             Product product1 = new Product(1, 10, 20, "name", "description");
@@ -68,7 +68,7 @@ namespace P2FixAnAppDotNetCode.Tests
         }
 
         [Fact]
-        public void GetAverageValue()
+        public void GetAverageValue_CalculateAverageValue_ExpectedAverageValueEqualAverageValue()
         {
             ICart cart = new Cart();
             IProductRepository productRepository = new ProductRepository();
@@ -85,7 +85,7 @@ namespace P2FixAnAppDotNetCode.Tests
         }
 
         [Fact]
-        public void GetTotalValue()
+        public void GetTotalValue_CalculateTotalValue_ExpectedTotalValueEqualTotalValue()
         {
             ICart cart = new Cart();
             IProductRepository productRepository = new ProductRepository();
@@ -103,7 +103,7 @@ namespace P2FixAnAppDotNetCode.Tests
         }
 
         [Fact]
-        public void FindProductInCartLines()
+        public void FindProductInCartLines_ProductExists_ProductReturned()
         {
             Cart cart = new Cart();
             Product product = new Product(999, 2, 20, "name", "description");
